@@ -19,7 +19,7 @@ async function Swaglabs_standard_login() {
 }
 Swaglabs_standard_login();
 
-
+/*
 async function Swaglabs_locked_login() {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://www.saucedemo.com/");
@@ -67,3 +67,4 @@ async function Swaglabs_glitch_login() {
 
 setTimeout(function() { Swaglabs_glitch_login(); }, 6000);
 
+*/
