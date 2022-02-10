@@ -18,7 +18,8 @@ pipeline {
     stage("build") {
       steps {
         sh "npm install"
-        sh "npm install --save-dev chromedriver"
+        sh 'npm install --save selenium-webdriver chromedriver'
+        sh 'npm install --save chromedriver'
         }
       }
     stage("Web GUI test") {
