@@ -15,11 +15,11 @@ async function Swaglabs_standard_login() {
     console.log('Title is:',title,searchString);
     console.log("First test - Swag Labs Standard Login")
     console.log("Test Passed")
-    await driver.quit();
+    await driver.close();
 }
 Swaglabs_standard_login();
 
-/*
+
 async function Swaglabs_locked_login() {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://www.saucedemo.com/");
@@ -30,10 +30,10 @@ async function Swaglabs_locked_login() {
     console.log('Title is:',title,searchString);
     console.log("Second test - Swag Labs Locked Login")
     console.log("Test Passed")
-    await driver.quit();
+    await driver.close();
 }
 
-setTimeout(function() { Swaglabs_locked_login(); }, 2000);
+Swaglabs_locked_login();
 
 
 async function Swaglabs_problem_login() {
@@ -46,10 +46,10 @@ async function Swaglabs_problem_login() {
     console.log('Title is:',title,searchString);
     console.log("Third test - Swag Labs Problem Login")
     console.log("Test Passed")
-    await driver.quit();
+    await driver.close();
 }
 
-setTimeout(function() { Swaglabs_problem_login(); }, 4000);
+Swaglabs_problem_login();
 
 
 async function Swaglabs_glitch_login() {
@@ -65,6 +65,5 @@ async function Swaglabs_glitch_login() {
     await driver.quit();
 }
 
-setTimeout(function() { Swaglabs_glitch_login(); }, 6000);
+Swaglabs_glitch_login();
 
-*/
