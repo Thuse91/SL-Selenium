@@ -208,7 +208,7 @@ async function Swaglabs_standard_login_all_items() {
     //added interaction on successful login to check that it worked
     async function awaitCss(){
         await driver.findElement(By.id("inventory_sidebar_link")).click();
-        //Verify that we are arrived on the about page.
+        //Verify that we are arrived on the select item page.
         await driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
         await driver.findElement(By.name("remove-sauce-labs-backpack")).click();
         let title = await driver.getTitle();
