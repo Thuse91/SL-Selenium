@@ -1,0 +1,30 @@
+pipeline {
+  
+  agent any
+  tools { nodejs "nodejs" }
+  
+  stages {
+    stage("Tools initiated") {   
+      steps {
+        sh "npm -v"
+        sh "git --version"
+      }
+    }
+    stage("Checkout Code") {
+      steps {
+        git branch: "main", url:"https://github.com/Thuse91/Test-Verktyg.git"
+      }
+    }
+    stage("build") {
+      steps {
+        sh "npm install"
+        sh 'npm install puppeteer'
+        }
+      }
+    stage("Web GUI test") {
+      steps {
+        sh "node testPPT"
+        }
+      }
+    }
+  }

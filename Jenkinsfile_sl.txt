@@ -8,6 +8,7 @@ pipeline {
       steps {
         sh "npm -v"
         sh "git --version"
+        sh "node -v"
       }
     }
     stage("Checkout Code") {

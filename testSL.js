@@ -22,7 +22,7 @@ require("chromedriver");
 
 var searchString = "Automation testing with Selenium";
 
-/*
+
 // login Tests
 async function Swaglabs_standard_login() {
     let driver = await new Builder().forBrowser("chrome").build();
@@ -196,7 +196,9 @@ async function Swaglabs_standard_login_about() {
     setTimeout(awaitCss,1000)
 }
 Swaglabs_standard_login_about();
-*/
+
+
+
 async function Swaglabs_standard_login_all_items() {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://www.saucedemo.com/");
