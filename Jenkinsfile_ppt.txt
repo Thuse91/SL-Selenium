@@ -18,7 +18,7 @@ pipeline {
     stage("build") {
       steps {
         sh "npm install"
-        sh 'npm install puppeteer'
+        sh 'npm -g install puppeteer'
         }
       }
     stage("Web GUI test") {
