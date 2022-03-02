@@ -6,8 +6,8 @@ pipeline {
   stages {
     stage("Tools initiated") {   
       steps {
-        sh "npm -v"
-        sh "git --version"
+        echo "npm -v"
+        echo "git --version"
       }
     }
     stage("Checkout Code") {
@@ -17,13 +17,13 @@ pipeline {
     }
     stage("build") {
       steps {
-        sh "npm install"
-        sh 'npm -g install puppeteer'
+        bat "install_script.bat"
+        echo 'npm -g install puppeteer'
         }
       }
     stage("Web GUI test") {
       steps {
-        sh "node testPPT"
+        echo "node testPPT"
         }
       }
     }

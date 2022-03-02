@@ -6,9 +6,9 @@ pipeline {
   stages {
     stage("Tools initiated") {   
       steps {
-        sh "npm -v"
-        sh "git --version"
-        sh "node -v"
+        echo "npm -v"
+        echo "git --version"
+        echo "node -v"
       }
     }
     stage("Checkout Code") {
@@ -18,14 +18,14 @@ pipeline {
     }
     stage("build") {
       steps {
-        sh "npm install"
-        sh 'npm install --save selenium-webdriver chromedriver'
-        sh 'npm install --save -g chromedriver'
+        bat "install_scrip.bat"
+        echo 'npm install --save selenium-webdriver chromedriver'
+        echo 'npm install --save -g chromedriver'
         }
       }
     stage("Web GUI test") {
       steps {
-        sh "node testSL"
+        bat "run_script.bat"
         }
       }
     }
