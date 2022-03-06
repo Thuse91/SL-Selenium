@@ -1,16 +1,7 @@
 pipeline {
-  
   agent any
   tools { nodejs "nodejs" }
-  
   stages {
-    stage("Tools initiated") {   
-      steps {
-        echo "npm -v"
-        echo "git --version"
-        echo "node -v"
-      }
-    }
     stage("Checkout Code") {
       steps {
         git branch: "main", url:"https://github.com/Thuse91/Test-Verktyg.git"
@@ -18,11 +9,14 @@ pipeline {
     }
     stage("build") {
       steps {
-        bat "install_scrip.bat"
-        echo 'npm install --save selenium-webdriver chromedriver'
-        echo 'npm install --save -g chromedriver'
+        bat "install_script.bat"
         }
       }
+    stage("Tools Version check") {   
+      steps {
+        bat "Version_check.bat"
+      }
+    }
     stage("Web GUI test") {
       steps {
         bat "run_script.bat"
