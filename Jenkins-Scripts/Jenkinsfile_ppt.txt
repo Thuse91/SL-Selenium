@@ -1,15 +1,7 @@
 pipeline {
-  
   agent any
   tools { nodejs "nodejs" }
-  
   stages {
-    stage("Tools initiated") {   
-      steps {
-        echo "npm -v"
-        echo "git --version"
-      }
-    }
     stage("Checkout Code") {
       steps {
         git branch: "main", url:"https://github.com/Thuse91/Test-Verktyg.git"
@@ -18,12 +10,16 @@ pipeline {
     stage("build") {
       steps {
         bat "install_script.bat"
-        echo 'npm -g install puppeteer'
         }
       }
+    stage("Tools Version check") {   
+      steps {
+        bat "Version_check.bat"
+      }
+    }
     stage("Web GUI test") {
       steps {
-        echo "node testPPT"
+        bat "run_script.bat"
         }
       }
     }
