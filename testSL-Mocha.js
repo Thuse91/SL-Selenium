@@ -1,3 +1,4 @@
+const assert  = require("assert");
 const {By,until,Key,Builder} = require("selenium-webdriver");
 require("chromedriver");
 
@@ -19,6 +20,10 @@ describe('Login tests', function(){
         await driver.findElement(By.id("password")).sendKeys("secret_sauce",Key.RETURN)
         //added interaction on successful login to check that it worked
         await driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
+        let verifyText = await driver.findElement(By.xpath('//*[@id="item_4_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyText,"Sauce Labs Backpack");
         await driver.close();
     })
 
@@ -79,7 +84,7 @@ describe('Login tests', function(){
 
     })
 })
-
+/*
 describe('UI functionality test (Standrad_user)', function(){
     this.timeout(50000);
     beforeEach(function(){
@@ -389,3 +394,5 @@ describe('Verify page content tests', function(){
         }
     })
 })
+
+*/
