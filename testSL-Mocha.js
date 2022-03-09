@@ -35,6 +35,10 @@ describe('Login tests', function(){
         await driver.findElement(By.id("password")).sendKeys("secret_sauce",Key.RETURN)
         //Verify that locked out login popped up
         await driver.findElement(By.xpath("//*[contains(text(), 'Epic sadface')]"));
+        let verifyText = await driver.findElement(By.xpath('//*[@id="login_button_container"]/div/form/div[3]/h3')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyText,"Epic sadface: Sorry, this user has been locked out.");
         await driver.close();
     })
     it('Problem user login test', async function(){
@@ -45,6 +49,10 @@ describe('Login tests', function(){
         await driver.findElement(By.id("password")).sendKeys("secret_sauce",Key.RETURN)
         //added interaction on successful login to check that it worked
         await driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
+        let verifyText = await driver.findElement(By.xpath('//*[@id="item_4_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyText,"Sauce Labs Backpack");
         await driver.close();
     })
     it('Glitched performance user login test', async function(){
@@ -55,6 +63,10 @@ describe('Login tests', function(){
         await driver.findElement(By.id("password")).sendKeys("secret_sauce",Key.RETURN)
         //added interaction on successful login to check that it worked
         await driver.findElement(By.name("add-to-cart-sauce-labs-backpack")).click();
+        let verifyText = await driver.findElement(By.xpath('//*[@id="item_4_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyText,"Sauce Labs Backpack");
         await driver.close();
     })
     it('Standard user login-logoff test', async function(){
@@ -68,6 +80,10 @@ describe('Login tests', function(){
             await driver.findElement(By.id("logout_sidebar_link")).click();
             //Verify that we are back at the login-screen by pressing the login-button
             await driver.findElement(By.id("login-button")).click();
+            let verifyText = await driver.findElement(By.xpath('//*[@id="login_credentials"]/h4')).getText().then(function(value){
+                return value
+            });
+            assert.strictEqual(verifyText,"Accepted usernames are:");
             await driver.close();
         }
         setTimeout(awaitCss,1000)
@@ -80,11 +96,15 @@ describe('Login tests', function(){
         await driver.findElement(By.id("password")).sendKeys("secret_sauced",Key.RETURN)
         //added interaction on failed login to check if error msg worked.
         await driver.findElement(By.xpath("//*[contains(text(), 'Epic sadface')]"));
+        let verifyText = await driver.findElement(By.xpath('//*[@id="login_button_container"]/div/form/div[3]/h3')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyText,"Epic sadface: Username and password do not match any user in this service");
         await driver.close();
 
     })
 })
-/*
+
 describe('UI functionality test (Standrad_user)', function(){
     this.timeout(50000);
     beforeEach(function(){
@@ -105,6 +125,36 @@ describe('UI functionality test (Standrad_user)', function(){
         await driver.findElement(By.name("add-to-cart-sauce-labs-fleece-jacket")).click();
         await driver.findElement(By.name("add-to-cart-sauce-labs-onesie")).click();
         await driver.findElement(By.name("add-to-cart-test\.allthethings\(\)-t-shirt-\(red\)")).click();
+        await driver.findElement(By.xpath('//*[@id="shopping_cart_container"]/a/span')).click();
+        let verifyFirstItem = await driver.findElement(By.xpath('//*[@id="item_4_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyFirstItem,"Sauce Labs Backpack");
+
+        let verifySecondItem = await driver.findElement(By.xpath('//*[@id="item_0_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifySecondItem,"Sauce Labs Bike Light");
+
+        let verifyThirdItem = await driver.findElement(By.xpath('//*[@id="item_1_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyThirdItem,"Sauce Labs Bolt T-Shirt");
+
+        let verifyFourthItem = await driver.findElement(By.xpath('//*[@id="item_5_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyFourthItem,"Sauce Labs Fleece Jacket");
+
+        let verifyFiftItem = await driver.findElement(By.xpath('//*[@id="item_2_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifyFiftItem,"Sauce Labs Onesie");
+
+        let verifySixthItem = await driver.findElement(By.xpath('//*[@id="item_3_title_link"]/div')).getText().then(function(value){
+            return value
+        });
+        assert.strictEqual(verifySixthItem,"Test.allTheThings() T-Shirt (Red)");
         await driver.close();
     })
     it('Add and remove all exisiting items to cart test', async function(){
@@ -337,6 +387,7 @@ describe('UI functionality test (Standrad_user)', function(){
     })
 })
 
+
 describe('Verify page content tests', function(){
     this.timeout(50000);
     beforeEach(function(){
@@ -394,5 +445,3 @@ describe('Verify page content tests', function(){
         }
     })
 })
-
-*/
